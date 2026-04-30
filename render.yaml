@@ -1,0 +1,62 @@
+# Render Blueprint — one-click deploy of the FastAPI backend.
+#
+# Reference: https://render.com/docs/blueprint-spec
+#
+# Builds backend/Dockerfile, mounts a 1 GB persistent disk at /data so
+# SQLite (evidence.db) survives deploys, and runs uvicorn on $PORT.
+#
+# After Render creates the service, set the SECRET env vars in the dashboard:
+#   OPENAI_API_KEY            (required for live LLM agents; deterministic
+#                              fallbacks still serve every endpoint without it)
+#   NCBI_API_KEY              (optional — higher PubMed/PMC rate limits)
+#   SEMANTIC_SCHOLAR_API_KEY  (optional)
+#
+# Then point your Vercel frontend at the resulting URL via BACKEND_URL.
+
+services:
+  - type: web
+    name: xtremegene-backend
+    runtime: docker
+    plan: starter
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    healthCheckPath: /
+    disk:
+      name: xtremegene-data
+      mountPath: /data
+      sizeGB: 1
+    envVars:
+      - key: EVIDENCE_DB_PATH
+        value: /data/evidence.db
+      - key: OPENALEX_USER_AGENT
+        value: https://github.com/eashanroy7/aethena
+      - key: PAPER_FETCH_DELAY_SECONDS
+        value: "0.2"
+      - key: OPENALEX_PER_PAGE_MULTIPLIER
+        value: "5"
+      - key: OPENALEX_TIMEOUT_SECONDS
+        value: "30"
+      - key: PMC_TIMEOUT_SECONDS
+        value: "30"
+      - key: MAX_PAPERS_DEFAULT
+        value: "10"
+      - key: OPENAI_AGENT1_MODEL
+        value: o3-mini
+      - key: OPENAI_AGENT2_MODEL
+        value: gpt-4o-mini
+      - key: OPENAI_AGENT4_MODEL
+        value: gpt-4o-mini
+      - key: ESMFOLD_URL
+        value: https://api.esmatlas.com/foldSequence/v1/pdb/
+      - key: ESMFOLD_MAX_LEN
+        value: "400"
+      - key: ESMFOLD_OVERLAP
+        value: "20"
+      # sync:false keeps secrets out of git; set their values in the
+      # Render dashboard after the Blueprint creates the service.
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: NCBI_API_KEY
+        sync: false
+      - key: SEMANTIC_SCHOLAR_API_KEY
+        sync: false
