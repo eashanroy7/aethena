@@ -1,8 +1,8 @@
-# Aethena · The AI Scientist
+# æthena · The AI Scientist
 
 > **From a research question to a runnable wet-lab experiment plan.** Literature QC, hypothesis ranking with protein-folding confidence, and a Friday-ready protocol with materials, budget, timeline, and validation — all driven by a multi-agent orchestration.
 
-Aethena is an opinionated, end-to-end research-planning tool focused on α7 nicotinic acetylcholine receptor (nAChR) work and the C. elegans / human RIC-3 chaperone problem. You type a scientific question; the system runs a fast prior-art check, generates ranked hypotheses backed by ESMFold-predicted protein folding confidence, and emits a clear, executable wet-lab masterplan that a real PI could pick up on Monday and start running by Friday.
+ æthena is an opinionated, end-to-end research-planning tool focused on α7 nicotinic acetylcholine receptor (nAChR) work and the C. elegans / human RIC-3 chaperone problem. You type a scientific question; the system runs a fast prior-art check, generates ranked hypotheses backed by ESMFold-predicted protein folding confidence, and emits a clear, executable wet-lab masterplan that a real PI could pick up on Monday and start running by Friday.
 
 ---
 

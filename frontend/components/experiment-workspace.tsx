@@ -280,14 +280,10 @@ export function ExperimentWorkspace() {
             <div className="flex items-center gap-3">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/logo.jpeg"
+                src="/aethena-logo.png"
                 alt="Aethena"
-                className="h-[54px] w-[54px] rounded-lg object-contain"
-                style={{ filter: "invert(1)" }}
+                className="h-[88px] w-[88px] rounded-full object-cover"
               />
-              <p className="text-[22px] font-medium tracking-[-0.02em] text-white">
-                <span className="font-semibold">Aethena</span>
-              </p>
             </div>
             <div className="flex items-center gap-4 text-xs text-zinc-500">
               <span className="hidden sm:inline">alpha7 nAChR</span>
