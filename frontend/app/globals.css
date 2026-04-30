@@ -1,0 +1,135 @@
+@import "tailwindcss";
+
+:root {
+  --background: #09090b;
+  --foreground: #f4f4f5;
+  --muted: #a1a1aa;
+  --border: rgba(255, 255, 255, 0.08);
+  --card: rgba(24, 24, 27, 0.88);
+  --card-muted: rgba(24, 24, 27, 0.5);
+  --input-bg: rgba(9, 9, 11, 0.72);
+  --header-bg: rgba(9, 9, 11, 0.78);
+  --pill-idle: rgba(63, 63, 70, 0.45);
+  --shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 32px 100px rgba(0, 0, 0, 0.55);
+  --accent: #10b981;
+  --accent-dim: rgba(16, 185, 129, 0.12);
+  --accent-glow: rgba(16, 185, 129, 0.22);
+  --ring-focus: rgba(16, 185, 129, 0.45);
+
+  --badge-nf-bg: rgba(59, 130, 246, 0.12);
+  --badge-nf-fg: #bfdbfe;
+  --badge-nf-ring: rgba(59, 130, 246, 0.35);
+  --badge-sw-bg: rgba(245, 158, 11, 0.12);
+  --badge-sw-fg: #fde68a;
+  --badge-sw-ring: rgba(245, 158, 11, 0.35);
+  --badge-em-bg: rgba(244, 63, 94, 0.12);
+  --badge-em-fg: #fecdd3;
+  --badge-em-ring: rgba(244, 63, 94, 0.35);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-dm-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+::selection {
+  background: rgba(16, 185, 129, 0.28);
+  color: var(--foreground);
+}
+
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 75% 55% at 50% -5%, black, transparent);
+}
+
+.hero-aurora {
+  background:
+    radial-gradient(ellipse 90% 70% at 50% -30%, rgba(16, 185, 129, 0.2), transparent 55%),
+    radial-gradient(ellipse 60% 50% at 85% 15%, rgba(56, 189, 248, 0.12), transparent 45%),
+    radial-gradient(ellipse 50% 40% at 10% 25%, rgba(167, 139, 250, 0.1), transparent 45%);
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up,
+  .animate-fade-in {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Interactive card lift — subtle, native-feeling */
+.interactive-surface {
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.25s ease,
+    transform 0.2s ease;
+}
+
+@media (hover: hover) {
+  .interactive-surface:hover {
+    border-color: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.08), var(--shadow);
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--ring-focus);
+  outline-offset: 2px;
+}
+
+button:focus:not(:focus-visible),
+a:focus:not(:focus-visible) {
+  outline: none;
+}
